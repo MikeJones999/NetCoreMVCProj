@@ -8760,10 +8760,10 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\users\\mike\\documents\\visual studio 2017\\Projects\\TheWorld\\TheWorld.csproj",
+      "projectUniqueName": "C:\\Users\\mike\\documents\\visual studio 2017\\Projects\\TheWorld\\TheWorld.csproj",
       "projectName": "TheWorld",
-      "projectPath": "c:\\users\\mike\\documents\\visual studio 2017\\Projects\\TheWorld\\TheWorld.csproj",
-      "outputPath": "c:\\users\\mike\\documents\\visual studio 2017\\Projects\\TheWorld\\obj\\",
+      "projectPath": "C:\\Users\\mike\\documents\\visual studio 2017\\Projects\\TheWorld\\TheWorld.csproj",
+      "outputPath": "C:\\Users\\mike\\documents\\visual studio 2017\\Projects\\TheWorld\\obj\\",
       "projectStyle": "PackageReference",
       "originalTargetFrameworks": [
         "netcoreapp1.1"
