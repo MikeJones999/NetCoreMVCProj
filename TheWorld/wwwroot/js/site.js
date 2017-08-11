@@ -4,21 +4,48 @@
 //wrapping in function hides the global naming issues - i.e all js are executed in global scope and therefore variables could override one another
 (function () {
 
-    //this script is referenced and called with in index.htm
-    var ele = document.getElementById("username");
-    ele.innerHTML = "Mikie Jones";
+    //without JQuery
+       // //this script is referenced and called with in index.htm
+        //var ele = document.getElementById("username");
+        //ele.innerHTML = "Mikie Jones";
+
+       // //changing background colour of the main section of the index div 
+        //var main = document.getElementById("main");
+
+    //with JQuery - $ sign used to get the element - # to highlight the variable required
+
+    //var ele = $("#username");
+    //ele.text("Mike Jonesaaaa");
+
+    //var main = $("#main");
+
+    ////assign annonymous function
+    ////main.on("mouseenter",function () {
+    ////    main.style = "background-color : #888;";
+    ////});
+
+    //$("#main").mouseenter(function () {
+    //    $("#main").css("background-color", "#888");
+    //});
 
 
-    //changing background colour of the main section of the index div 
-    var main = document.getElementById("main");
-    //assign annonymous function
-    main.onmouseenter = function () {
-        main.style.backgroundColor = "#888";
-    };
+    //$("#main").mouseleave(function () {
+    //    $("#main").css("background-color", "");
+    //});
 
-    main.onmouseleave = function () {
-        main.style.backgroundColor = "";
-    };
+    ////gets list of menu items - class marked menu
+    //var menuItems = $("ul.menu li a");
+    //menuItems.on("click", function ()
+    //{
+    //    var me = $(this);
+    //    alert(me.text());
+    //});
+
+
+
 
 })();
-//last (); is actually calling this function itself you could always have parenthesis ("hello"); if required. 
+//last (); is actually calling this function itself you could always have parenthesis ("hello"); if required.
+
+
+

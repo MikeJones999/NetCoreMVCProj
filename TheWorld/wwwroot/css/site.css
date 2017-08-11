@@ -52,10 +52,9 @@ input[type=submit]
 
     }
 
-        .menu li.active {
-            font-weight: bold;
-
-        }
+   .menu li.active {
+        font-weight: bold;
+    }
 
 #sidebar{
     background: #62556b;
