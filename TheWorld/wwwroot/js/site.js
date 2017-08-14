@@ -41,8 +41,21 @@
     //    alert(me.text());
     //});
 
+    //get both items as a wrapped jquery object
+    var $sidebarAndWrapper = $("#sidebar, #wrapper");
 
-
+    //get button - then toggle it on and off
+    $("#sidebarToggle").on("click", function () {
+        $sidebarAndWrapper.toggleClass("hide-sidebar");
+        if ($sidebarAndWrapper.hasClass("hide-sidebar"))
+        {
+            $(this).text("Show Sidebar");
+        }
+        else
+        {
+            $(this).text("Hide Sidebar");
+        }
+    });
 
 })();
 //last (); is actually calling this function itself you could always have parenthesis ("hello"); if required.
