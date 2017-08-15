@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>The World - @ViewBag.Title</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+</head>
+
+<body>
+    <div id="sidebar">
+        <img src="~/img/idimage.jpg" alt="headshot" class="headshot" />
+        <span id="username">Logged in: Mike Jones</span>
+        <ul class="menu">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+
+    <div id="wrapper">
+        <div id="main">
+
+            <div>
+                <button id="sidebarToggle">Toggle Menu</button>
+            </div>
+
+            <!-- Injects the body of the pages here-->
+            @RenderBody()
+                 
+
+        </div>
+        <div id="footer">
+            &copy; 2017 TapeDeck Games Ltd
+        </div>
+    </div> <!-- end of wrapper-->
+    <!--jquery instead of raw JS-->
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
+    <!-- injection of data to the above id of username-->
+    <script type="text/javascript" src="~/js/site.js"></script>
+
+
+
+</body>
+</html>
