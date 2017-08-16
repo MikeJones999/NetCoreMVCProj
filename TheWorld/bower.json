@@ -3,6 +3,8 @@
   "private": true,
   "dependencies": {
     "underscore": "*",
-    "jquery" : "*"
+    "jquery": "*",
+    "jquery-validation": "1.17.0",
+    "jquery-validation-unobtrusive": "3.2.6"
   }
 }
