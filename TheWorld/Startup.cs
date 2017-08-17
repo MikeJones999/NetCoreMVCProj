@@ -7,15 +7,30 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using TheWorld.Services;
 
 namespace TheWorld
 {
     public class Startup
     {
+        private IHostingEnvironment _env;
+
+        public Startup(IHostingEnvironment env)
+        {
+            _env = env;
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            //if in develpoment then use debug means to display message
+            if (_env.IsDevelopment())
+            {
+                //used but only within the scope of a single request
+                services.AddScoped<IMailService, DebugMailService>();
+            }
+
             //set up service container MVC - for dependency injection
             services.AddMvc();
 
