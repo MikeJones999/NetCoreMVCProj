@@ -4,7 +4,12 @@
 <head>
     <title>The World - @ViewBag.Title</title>
     <meta charset="utf-8" />
+    
+    <link rel="stylesheet"href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/Font-Awesome/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="~/css/site.css" />
+
+
 
 </head>
 
@@ -23,7 +28,9 @@
         <div id="main">
 
             <div>
-                <button id="sidebarToggle">Toggle Menu</button>
+                <button id="sidebarToggle" class="btn btn-primary">
+                <i class="fa fa-angle-left"> </i>
+                </button>
             </div>
 
             <!-- Injects the body of the pages here-->
@@ -32,11 +39,15 @@
 
         </div>
         <div id="footer">
-            &copy; 2017 TapeDeck Games Ltd
+            <p class="text-primary">
+            &copy; 2017 TapeDeck Games Ltd</p>
         </div>
     </div> <!-- end of wrapper-->
     <!--jquery instead of raw JS-->
     <script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
+
+    <script type="text/javascript" src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
     <!-- injection of data to the above id of username-->
     <script type="text/javascript" src="~/js/site.js"></script>
 

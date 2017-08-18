@@ -1,5 +1,8 @@
 ﻿/*site.css*/
 
+/*commented out so that Bootstrap would be used*/
+
+/*
 body {
     font-family: sans-serif;
     font-size: 14px;
@@ -21,6 +24,8 @@ input[type=submit]
 {
     width:auto;
 }
+*/
+    
 
 #main {
     background-color: #d2c8d9;

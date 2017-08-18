@@ -3,7 +3,7 @@ C:\Users\mike\documents\visual studio 2017\Projects\TheWorld\bin\Debug\netcoreap
 C:\Users\mike\documents\visual studio 2017\Projects\TheWorld\bin\Debug\netcoreapp1.1\TheWorld.runtimeconfig.dev.json
 C:\Users\mike\documents\visual studio 2017\Projects\TheWorld\bin\Debug\netcoreapp1.1\TheWorld.dll
 C:\Users\mike\documents\visual studio 2017\Projects\TheWorld\bin\Debug\netcoreapp1.1\TheWorld.pdb
+C:\Users\mike\documents\visual studio 2017\Projects\TheWorld\obj\Debug\netcoreapp1.1\TheWorld.csprojResolveAssemblyReference.cache
 C:\Users\mike\documents\visual studio 2017\Projects\TheWorld\obj\Debug\netcoreapp1.1\TheWorld.AssemblyInfo.cs
 C:\Users\mike\documents\visual studio 2017\Projects\TheWorld\obj\Debug\netcoreapp1.1\TheWorld.dll
 C:\Users\mike\documents\visual studio 2017\Projects\TheWorld\obj\Debug\netcoreapp1.1\TheWorld.pdb
-C:\Users\mike\documents\visual studio 2017\Projects\TheWorld\obj\Debug\netcoreapp1.1\TheWorld.csprojResolveAssemblyReference.cache

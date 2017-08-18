@@ -5,6 +5,11 @@
     "underscore": "*",
     "jquery": "*",
     "jquery-validation": "1.17.0",
-    "jquery-validation-unobtrusive": "3.2.6"
+    "jquery-validation-unobtrusive": "~3.2.6",
+    "bootstrap": "v4.0.0-beta",
+    "Font-Awesome": "~4.7.0"
+  },
+  "resolutions": {
+    "bootstrap": "v4.0.0-beta"
   }
 }

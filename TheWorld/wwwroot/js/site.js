@@ -43,17 +43,23 @@
 
     //get both items as a wrapped jquery object
     var $sidebarAndWrapper = $("#sidebar, #wrapper");
+    var $icon = $("#sidebarToggle i.fa");
 
     //get button - then toggle it on and off
     $("#sidebarToggle").on("click", function () {
         $sidebarAndWrapper.toggleClass("hide-sidebar");
         if ($sidebarAndWrapper.hasClass("hide-sidebar"))
         {
-            $(this).text("Show Sidebar");
+            $icon.removeClass("fa-angle-left");
+            $icon.addClass("fa-angle-right");
+           // $(this).text("Show Sidebar");
         }
         else
         {
-            $(this).text("Hide Sidebar");
+            // $(this).text("Hide Sidebar"); 
+            $icon.removeClass("fa-angle-right");
+            $icon.addClass("fa-angle-left");
+       
         }
     });
 
