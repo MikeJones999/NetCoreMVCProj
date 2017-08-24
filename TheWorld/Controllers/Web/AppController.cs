@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TheWorld.Models;
 using TheWorld.Services;
 using TheWorld.ViewModels;
 
@@ -15,19 +16,22 @@ namespace TheWorld.Controllers.Web
     {
         private IMailService _mailService;
         private IConfigurationRoot _config;
+        private WorldContext _context;
 
         //Uses Dependency injection to supply a mailservice object (via startup.cs) - which can then be used to call methods within mailservice
-        public AppController(IMailService mailService, IConfigurationRoot config)
+        public AppController(IMailService mailService, IConfigurationRoot config, WorldContext context)
         {
             this._mailService = mailService;
             this._config = config;
+            this._context = context;
         }
 
 
         public IActionResult Index()
         {
+            List<Trip> data = _context.Trips.ToList();
             //go find view index.cshtml in Views/App/- render it and return to user
-            return View();
+            return View(data);
         }
 
         //get function 

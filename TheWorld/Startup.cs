@@ -27,6 +27,7 @@ namespace TheWorld
                 .SetBasePath(_env.ContentRootPath)
                 .AddJsonFile("config.json")
                 .AddEnvironmentVariables();
+            
 
             this._config = builder.Build();
         }
