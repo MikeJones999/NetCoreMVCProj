@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using TheWorld.Services;
 using Microsoft.Extensions.Configuration;
+using TheWorld.Models;
 
 namespace TheWorld
 {
@@ -43,6 +44,10 @@ namespace TheWorld
                 //used but only within the scope of a single request
                 services.AddScoped<IMailService, DebugMailService>();
             }
+
+
+            //register the dbcontext - making it injectable into the project
+            services.AddDbContext<WorldContext>();
 
             //set up service container MVC - for dependency injection
             services.AddMvc();
