@@ -7,3 +7,4 @@ C:\Users\mike\documents\visual studio 2017\Projects\TheWorld\obj\Debug\netcoreap
 C:\Users\mike\documents\visual studio 2017\Projects\TheWorld\obj\Debug\netcoreapp1.1\TheWorld.AssemblyInfo.cs
 C:\Users\mike\documents\visual studio 2017\Projects\TheWorld\obj\Debug\netcoreapp1.1\TheWorld.dll
 C:\Users\mike\documents\visual studio 2017\Projects\TheWorld\obj\Debug\netcoreapp1.1\TheWorld.pdb
+C:\Users\mike\documents\visual studio 2017\Projects\TheWorld\obj\Debug\netcoreapp1.1\TheWorld.csproj.CoreCompileInputs.cache
