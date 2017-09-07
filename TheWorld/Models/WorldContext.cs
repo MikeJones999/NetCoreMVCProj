@@ -12,6 +12,7 @@ namespace TheWorld.Models
     {
         private IConfigurationRoot _config;
 
+        //Dependency injector construction layer will create the objects being passed in to the constructor
         //IConfig - obtained and injected from startUp.cs
         //DBContextOptions required for OnConfiguring to work - 
         public WorldContext(IConfigurationRoot config, DbContextOptions options) : base(options)
@@ -22,6 +23,8 @@ namespace TheWorld.Models
 
         public DbSet<Trip> Trips { get; set; }
         public DbSet<Stop> Stops { get; set; }
+
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
