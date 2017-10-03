@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using TheWorld.Services;
 using Microsoft.Extensions.Configuration;
 using TheWorld.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace TheWorld
 {
@@ -40,7 +41,7 @@ namespace TheWorld
             services.AddSingleton(_config);
 
             //if in develpoment then use debug means to display message
-            if (_env.IsDevelopment())
+            if (_env.IsEnvironment("Development") || _env.IsEnvironment("Testing"))
             {
                 //used but only within the scope of a single request
                 services.AddScoped<IMailService, DebugMailService>();
@@ -50,18 +51,27 @@ namespace TheWorld
             //register the dbcontext - making it injectable into the project
             services.AddDbContext<WorldContext>();
 
+            //services.AddLogging();
+
+
+            //used but only within the scope of a single request
+            services.AddScoped<IWorldRepository, WorldRepository>();
+
+            //creates every time its needed
+            services.AddTransient<WorldContextSeedData>();
+
             //set up service container MVC - for dependency injection
             services.AddMvc();
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, WorldContextSeedData seeder)
         {
                   
-            loggerFactory.AddConsole();
+            //loggerFactory.AddConsole();
 
-            if (env.IsDevelopment())
+            if (env.IsEnvironment("Development"))
             {
                 //allows dev to see development errors - e.g when 500 error is given - provides stack
                 app.UseDeveloperExceptionPage();
@@ -91,6 +101,8 @@ namespace TheWorld
                     );
             });
 
+            //calls the seeder function
+            seeder.EnsureSeedData().Wait();
         }
     }
 }

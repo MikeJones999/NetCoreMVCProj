@@ -3,6 +3,6 @@
     "ToAddress": "Admin@TapeDeckGames.com"
   },
   "ConnectionStrings": {
-    "WorldContextConnection": "Server=(localdb)\\MSSQLLocalDB; Database=TheWorldDb;Trusted_Connection=true;MultipleActiveResultSets=true;"
+    "WorldContextConnection": "Server=(localdb)\\mssqllocaldb; Database=TheWorldDb;Trusted_Connection=true;MultipleActiveResultSets=true;Integrated Security=SSPI"
   }
 }

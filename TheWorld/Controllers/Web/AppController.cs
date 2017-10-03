@@ -16,20 +16,23 @@ namespace TheWorld.Controllers.Web
     {
         private IMailService _mailService;
         private IConfigurationRoot _config;
-        private WorldContext _context;
+        private IWorldRepository _repository;
+
+        // private WorldContext _context;
 
         //Uses Dependency injection to supply a mailservice object (via startup.cs) - which can then be used to call methods within mailservice
-        public AppController(IMailService mailService, IConfigurationRoot config, WorldContext context)
+        public AppController(IMailService mailService, IConfigurationRoot config, IWorldRepository repository)
         {
             this._mailService = mailService;
             this._config = config;
-            this._context = context;
+            this._repository = repository;
         }
 
 
         public IActionResult Index()
         {
-            List<Trip> data = _context.Trips.ToList();
+            //  List<Trip> data = _context.Trips.ToList();
+            var data = _repository.GetAllTrips();
             //go find view index.cshtml in Views/App/- render it and return to user
             return View(data);
         }
