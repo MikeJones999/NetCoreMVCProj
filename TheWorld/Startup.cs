@@ -51,7 +51,7 @@ namespace TheWorld
             //register the dbcontext - making it injectable into the project
             services.AddDbContext<WorldContext>();
 
-            //services.AddLogging();
+
 
 
             //used but only within the scope of a single request
@@ -59,6 +59,9 @@ namespace TheWorld
 
             //creates every time its needed
             services.AddTransient<WorldContextSeedData>();
+
+            //add support of logging of interfaces and services
+            services.AddLogging();
 
             //set up service container MVC - for dependency injection
             services.AddMvc();
@@ -69,12 +72,17 @@ namespace TheWorld
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, WorldContextSeedData seeder)
         {
                   
-            //loggerFactory.AddConsole();
+         
 
             if (env.IsEnvironment("Development"))
             {
                 //allows dev to see development errors - e.g when 500 error is given - provides stack
                 app.UseDeveloperExceptionPage();
+                loggerFactory.AddDebug(LogLevel.Information);               
+            }
+            else
+            {
+                loggerFactory.AddDebug(LogLevel.Error);
             }
 
             //app.Run(async (context) =>
