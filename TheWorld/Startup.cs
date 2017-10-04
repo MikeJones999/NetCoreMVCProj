@@ -11,6 +11,7 @@ using TheWorld.Services;
 using Microsoft.Extensions.Configuration;
 using TheWorld.Models;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Serialization;
 
 namespace TheWorld
 {
@@ -63,8 +64,9 @@ namespace TheWorld
             //add support of logging of interfaces and services
             services.AddLogging();
 
-            //set up service container MVC - for dependency injection
-            services.AddMvc();
+            //set up service container MVC - for dependency injection  - services.AddMvc()
+            //Adds the camcel casing for the json output - AddJsonOptions() -> below is camel casing starting with lower case
+            services.AddMvc().AddJsonOptions(config => { config.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver(); });
 
         }
 
