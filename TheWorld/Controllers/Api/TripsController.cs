@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TheWorld.Models;
+using TheWorld.ViewModels;
 
 namespace TheWorld.Controllers.Api
 {
@@ -33,11 +34,26 @@ namespace TheWorld.Controllers.Api
         }
 
 
+        //[HttpPut("")]
+        ////[HttpPut("api/trips")]
+        //public IActionResult Put([FromBody] Trip trip)
+        //{
+        //    return Ok(true);
+        //}
+
+
+            //as we want to hide information (returned) use View Models rather than the entity itself - also the validation isnt required on the entity rather
+            //used on the view model
+            //below returns the viewModel not the entity 
         [HttpPut("")]
-        //[HttpPut("api/trips")]
-        public IActionResult Put([FromBody] Trip trip)
+        public IActionResult Put([FromBody] TripViewModel trip)
         {
-            return Ok(true);
+            if(ModelState.IsValid)
+            {
+                return Created($"api/trips/{trip.Name}", trip);
+            }
+            //return BadRequest("Incorrect format on Trip");
+            return BadRequest(ModelState); //******dont use in public use - debug only*******
         }
 
     }
