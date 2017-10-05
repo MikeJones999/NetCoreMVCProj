@@ -8,6 +8,8 @@ using TheWorld.Models;
 
 namespace TheWorld.Controllers.Api
 {
+
+    [Route("api/trips")]  //use this to default the route
     public class TripsController : Controller
     {
         private IWorldRepository _context;
@@ -24,10 +26,19 @@ namespace TheWorld.Controllers.Api
         }
 
 
-        [HttpGet("api/trips")]
+        [HttpGet("")]
         public IActionResult Get()
         {
             return Ok(_context.GetAllTrips());
         }
+
+
+        [HttpPut("")]
+        //[HttpPut("api/trips")]
+        public IActionResult Put([FromBody] Trip trip)
+        {
+            return Ok(true);
+        }
+
     }
 }
