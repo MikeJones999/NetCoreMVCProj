@@ -17,6 +17,11 @@ namespace TheWorld.Models
             _logger = logger;
         }
 
+        public void AddTrip(Trip trip)
+        {
+            _context.Add(trip);
+        }
+
         public IEnumerable<Trip> GetAllTrips()
         {
             //logs information regarding the request - addition information will be provided by the system
@@ -25,5 +30,10 @@ namespace TheWorld.Models
             return _context.Trips.ToList();
         }
 
+        public async Task<bool> SaveChangesAsync()
+        {
+            //SaveChangesAsync returns an int refering the number of rows affected
+            return (await _context.SaveChangesAsync()) > 0;
+        }
     }
 }

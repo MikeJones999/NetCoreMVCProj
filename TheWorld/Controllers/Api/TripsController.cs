@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace TheWorld.Controllers.Api
     public class TripsController : Controller
     {
         private IWorldRepository _context;
+        private ILogger<Trip> _logger;
 
         //[HttpGet("api/trips")]
         //public JsonResult Get()
@@ -22,9 +24,10 @@ namespace TheWorld.Controllers.Api
         //    return Json( new Trip() { Name = "My Trip" });
         //}
 
-        public TripsController(IWorldRepository context)
+        public TripsController(IWorldRepository context, ILogger<Trip> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
 
@@ -41,7 +44,7 @@ namespace TheWorld.Controllers.Api
             catch(Exception ex)
             {
                 //TODO Logging
-
+                _logger.LogError($"Failed to get all trips from get request: {ex}");
                 return BadRequest("Error occured : " + ex.Message);
             }
         }
@@ -58,17 +61,26 @@ namespace TheWorld.Controllers.Api
             //as we want to hide information (returned) use View Models rather than the entity itself - also the validation isnt required on the entity rather
             //used on the view model
             //below returns the viewModel not the entity 
-        [HttpPut("")]
-        public IActionResult Put([FromBody] TripViewModel trip)
+        [HttpPost("")]
+        public async Task<IActionResult> Post([FromBody] TripViewModel trip)
         {
             if(ModelState.IsValid)
             {
 
                 //using automapper to passin a tripview model and map to a trip entity
                 var newTrip = Mapper.Map<Trip>(trip);
+                _context.AddTrip(newTrip);
 
-                //send back the new trip but as vewi model as not to expose the detail
-                return Created($"api/trips/{trip.Name}", Mapper.Map<TripViewModel>(newTrip));
+
+                if(await _context.SaveChangesAsync())
+                {
+                    //send back the new trip but as vewi model as not to expose the detail
+                    return Created($"api/trips/{trip.Name}", Mapper.Map<TripViewModel>(newTrip));
+                }
+                else
+                {
+                    return BadRequest("Failed to save changes to Database");
+                }
             }
             //return BadRequest("Incorrect format on Trip");
             return BadRequest(ModelState); //******dont use in public use - debug only*******
