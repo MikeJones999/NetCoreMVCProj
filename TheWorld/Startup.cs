@@ -82,6 +82,7 @@ namespace TheWorld
             {
                 //this creates a one way map , then using reversemap creates one the other way - Thus two way mapping
                 config.CreateMap<TripViewModel, Trip>().ReverseMap();
+                config.CreateMap<StopViewModel, Stop>().ReverseMap();
             });
 
             if (env.IsEnvironment("Development"))
