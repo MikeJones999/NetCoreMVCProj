@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TheWorld.Models;
+using TheWorld.Services;
 
 namespace TheWorld.Controllers.Api
 {
@@ -15,11 +16,13 @@ namespace TheWorld.Controllers.Api
     {
         private ILogger<StopsController> _logger;
         private IWorldRepository _repository;
+        private GeoCoordsService _coordsService;
 
-        public StopsController(ILogger<StopsController> logger, IWorldRepository repository) 
+        public StopsController(ILogger<StopsController> logger, IWorldRepository repository, GeoCoordsService coordsService) 
         {
             _logger = logger;
             _repository = repository;
+            _coordsService = coordsService;
         }
 
         [HttpGet("")]
@@ -49,14 +52,23 @@ namespace TheWorld.Controllers.Api
                    var newStop = Mapper.Map<Stop>(stop);
 
                     //lookup the geocodes
-
-
-                    //save to Database
-
-                    _repository.AddStop(tripName, newStop);
-                    if (await _repository.SaveChangesAsync())
+                    var results = await _coordsService.GetCoordsAsync(newStop.Name);
+                    if (!results.Success)
                     {
-                        return Created($"api/trips/{tripName}/stops/{newStop.Name}", Mapper.Map<StopViewModel>(newStop));
+                        _logger.LogError(results.Message);
+                    }
+                    else
+                    {
+                        newStop.Latitude = results.Latitude;
+                        newStop.Longitude = results.Longitude;
+
+                        //save to Database
+
+                        _repository.AddStop(tripName, newStop);
+                        if (await _repository.SaveChangesAsync())
+                        {
+                            return Created($"api/trips/{tripName}/stops/{newStop.Name}", Mapper.Map<StopViewModel>(newStop));
+                        }
                     }
                 }
             }

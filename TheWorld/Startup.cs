@@ -60,7 +60,10 @@ namespace TheWorld
             //used but only within the scope of a single request
             services.AddScoped<IWorldRepository, WorldRepository>();
 
-            //creates every time its needed
+
+            services.AddTransient<GeoCoordsService>();
+
+            //creates every time its needed and then discards 
             services.AddTransient<WorldContextSeedData>();
 
             //add support of logging of interfaces and services
