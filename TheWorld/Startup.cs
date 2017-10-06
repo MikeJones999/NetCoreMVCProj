@@ -12,6 +12,8 @@ using Microsoft.Extensions.Configuration;
 using TheWorld.Models;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Serialization;
+using AutoMapper;
+using TheWorld.ViewModels;
 
 namespace TheWorld
 {
@@ -73,8 +75,14 @@ namespace TheWorld
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, WorldContextSeedData seeder)
         {
-                  
-         
+
+            //Set up the mapping for viewmodel to entity obj
+            //this also creates collections not just single entities
+            Mapper.Initialize(config =>
+            {
+                //this creates a one way map , then using reversemap creates one the other way - Thus two way mapping
+                config.CreateMap<TripViewModel, Trip>().ReverseMap();
+            });
 
             if (env.IsEnvironment("Development"))
             {

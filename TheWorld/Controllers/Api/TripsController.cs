@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,19 @@ namespace TheWorld.Controllers.Api
         [HttpGet("")]
         public IActionResult Get()
         {
-            return Ok(_context.GetAllTrips());
+            try
+            {
+                var results = _context.GetAllTrips();
+
+                //use mapping to return results as view model - bit of abstraction to hide the full detail
+                return Ok(Mapper.Map<IEnumerable<TripViewModel>>(results));
+            }
+            catch(Exception ex)
+            {
+                //TODO Logging
+
+                return BadRequest("Error occured : " + ex.Message);
+            }
         }
 
 
@@ -50,7 +63,12 @@ namespace TheWorld.Controllers.Api
         {
             if(ModelState.IsValid)
             {
-                return Created($"api/trips/{trip.Name}", trip);
+
+                //using automapper to passin a tripview model and map to a trip entity
+                var newTrip = Mapper.Map<Trip>(trip);
+
+                //send back the new trip but as vewi model as not to expose the detail
+                return Created($"api/trips/{trip.Name}", Mapper.Map<TripViewModel>(newTrip));
             }
             //return BadRequest("Incorrect format on Trip");
             return BadRequest(ModelState); //******dont use in public use - debug only*******
