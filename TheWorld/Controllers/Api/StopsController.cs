@@ -37,5 +37,34 @@ namespace TheWorld.Controllers.Api
             }
             return BadRequest($"Failed to get Trip: {tripName}");
         }
+
+
+        [HttpPost("")]
+        public async Task<IActionResult> Post(string tripName,[FromBody] StopViewModel stop)
+        {
+            try
+            {
+                if(ModelState.IsValid)
+                {
+                   var newStop = Mapper.Map<Stop>(stop);
+
+                    //lookup the geocodes
+
+
+                    //save to Database
+
+                    _repository.AddStop(tripName, newStop);
+                    if (await _repository.SaveChangesAsync())
+                    {
+                        return Created($"api/trips/{tripName}/stops/{newStop.Name}", Mapper.Map<StopViewModel>(newStop));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to save new Stop: {0}", ex);
+            }
+            return BadRequest("Failed to save new Stop");
+        }
     }
 }
